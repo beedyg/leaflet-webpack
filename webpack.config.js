@@ -16,11 +16,22 @@ module.exports = {
         ]
       },
       {
-        test: /\.png$/,
+        test: /\.(png|jpg|gif)$/i,
         use: [
-          'file-loader'
-        ]
-      }
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: false,
+    open: true,
+    port: 9000
   }
 };
